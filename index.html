@@ -1,0 +1,803 @@
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>Dokumentacja klas Tailwind CSS - Gridaly</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 20px;
+			}
+			h1 {
+				color: #0052cc;
+				border-bottom: 3px solid #0052cc;
+				padding-bottom: 10px;
+			}
+			h2 {
+				color: #0066cc;
+				border-bottom: 1px solid #ddd;
+				padding-bottom: 5px;
+			}
+			h3 {
+				color: #0066cc;
+				margin-top: 30px;
+			}
+			table {
+				border-collapse: collapse;
+				width: 100%;
+				margin: 20px 0;
+			}
+			th,
+			td {
+				border: 1px solid #ddd;
+				padding: 8px;
+				text-align: left;
+			}
+			th {
+				background-color: #f5f5f5;
+				font-weight: bold;
+			}
+			code {
+				background-color: #f4f4f4;
+				padding: 2px 4px;
+				border-radius: 3px;
+				font-family: monospace;
+			}
+			.color-preview {
+				display: inline-block;
+				width: 20px;
+				height: 20px;
+				border: 1px solid #ccc;
+				margin-right: 5px;
+				vertical-align: middle;
+			}
+			.toc {
+				background-color: #f9f9f9;
+				padding: 15px;
+				border-radius: 5px;
+				margin: 20px 0;
+			}
+			.toc ul {
+				list-style-type: none;
+				padding-left: 0;
+			}
+			.toc li {
+				margin: 5px 0;
+			}
+			.toc a {
+				text-decoration: none;
+				color: #0052cc;
+			}
+			.toc a:hover {
+				text-decoration: underline;
+			}
+			.section {
+				margin: 40px 0;
+			}
+			.note {
+				background-color: #e3f2fd;
+				padding: 10px;
+				border-left: 4px solid #2196f3;
+				margin: 20px 0;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>📋 Dokumentacja klas Tailwind CSS</h1>
+
+		<div class="note">
+			<strong>Lista 335 klas Tailwind CSS używanych w aplikacji Gridaly</strong>
+		</div>
+
+		<div class="toc">
+			<h2>📊 Spis treści</h2>
+			<ul>
+				<li><a href="#kolory-tla">🎨 Kolory tła</a></li>
+				<li><a href="#kolory-tekstu">🎨 Kolory tekstu</a></li>
+				<li><a href="#pozycjonowanie">📐 Pozycjonowanie</a></li>
+				<li><a href="#display">📦 Display</a></li>
+				<li><a href="#flexbox">🔧 Flexbox</a></li>
+				<li><a href="#spacing">📏 Spacing</a></li>
+				<li><a href="#typografia">🔤 Typografia</a></li>
+				<li><a href="#border">🖼️ Border & Radius</a></li>
+				<li><a href="#utilities">🎛️ Utilities</a></li>
+				<li><a href="#custom-gridaly">🏢 Custom Gridaly</a></li>
+			</ul>
+		</div>
+
+		<div class="section" id="kolory-tla">
+			<h2>🎨 Kolory tła</h2>
+			<table>
+				<thead>
+					<tr>
+						<th>Klasa</th>
+						<th>CSS</th>
+						<th>Opis</th>
+						<th>Podgląd</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><code>bg-black</code></td>
+						<td><code>background-color: #000000</code></td>
+						<td>Czarne tło</td>
+						<td><span class="color-preview" style="background-color: #000000"></span></td>
+					</tr>
+					<tr>
+						<td><code>bg-white</code></td>
+						<td><code>background-color: #ffffff</code></td>
+						<td>Białe tło</td>
+						<td><span class="color-preview" style="background-color: #ffffff"></span></td>
+					</tr>
+					<tr>
+						<td><code>bg-blue-50</code></td>
+						<td><code>background-color: #eff6ff</code></td>
+						<td>Niebieski bardzo jasny</td>
+						<td><span class="color-preview" style="background-color: #eff6ff"></span></td>
+					</tr>
+					<tr>
+						<td><code>bg-blue-100</code></td>
+						<td><code>background-color: #dbeafe</code></td>
+						<td>Niebieski jasny</td>
+						<td><span class="color-preview" style="background-color: #dbeafe"></span></td>
+					</tr>
+					<tr>
+						<td><code>bg-blue-200</code></td>
+						<td><code>background-color: #bfdbfe</code></td>
+						<td>Niebieski lekki</td>
+						<td><span class="color-preview" style="background-color: #bfdbfe"></span></td>
+					</tr>
+					<tr>
+						<td><code>bg-blue-300</code></td>
+						<td><code>background-color: #93c5fd</code></td>
+						<td>Niebieski średni jasny</td>
+						<td><span class="color-preview" style="background-color: #93c5fd"></span></td>
+					</tr>
+					<tr>
+						<td><code>bg-blue-400</code></td>
+						<td><code>background-color: #60a5fa</code></td>
+						<td>Niebieski średni</td>
+						<td><span class="color-preview" style="background-color: #60a5fa"></span></td>
+					</tr>
+					<tr>
+						<td><code>bg-blue-500</code></td>
+						<td><code>background-color: #3b82f6</code></td>
+						<td>Niebieski bazowy</td>
+						<td><span class="color-preview" style="background-color: #3b82f6"></span></td>
+					</tr>
+					<tr>
+						<td><code>bg-blue-600</code></td>
+						<td><code>background-color: #2563eb</code></td>
+						<td>Niebieski ciemny</td>
+						<td><span class="color-preview" style="background-color: #2563eb"></span></td>
+					</tr>
+					<tr>
+						<td><code>bg-blue-700</code></td>
+						<td><code>background-color: #1d4ed8</code></td>
+						<td>Niebieski bardzo ciemny</td>
+						<td><span class="color-preview" style="background-color: #1d4ed8"></span></td>
+					</tr>
+					<tr>
+						<td><code>bg-blue-800</code></td>
+						<td><code>background-color: #1e40af</code></td>
+						<td>Niebieski ultra ciemny</td>
+						<td><span class="color-preview" style="background-color: #1e40af"></span></td>
+					</tr>
+					<tr>
+						<td><code>bg-blue-900</code></td>
+						<td><code>background-color: #1e3a8a</code></td>
+						<td>Niebieski najciemniejszy</td>
+						<td><span class="color-preview" style="background-color: #1e3a8a"></span></td>
+					</tr>
+					<tr>
+						<td><code>bg-gray-50</code></td>
+						<td><code>background-color: #fafafa</code></td>
+						<td>Szary bardzo jasny</td>
+						<td><span class="color-preview" style="background-color: #fafafa"></span></td>
+					</tr>
+					<tr>
+						<td><code>bg-gray-100</code></td>
+						<td><code>background-color: #f4f4f5</code></td>
+						<td>Szary jasny</td>
+						<td><span class="color-preview" style="background-color: #f4f4f5"></span></td>
+					</tr>
+					<tr>
+						<td><code>bg-gray-200</code></td>
+						<td><code>background-color: #e4e4e7</code></td>
+						<td>Szary lekki</td>
+						<td><span class="color-preview" style="background-color: #e4e4e7"></span></td>
+					</tr>
+					<tr>
+						<td><code>bg-gray-300</code></td>
+						<td><code>background-color: #d4d4d8</code></td>
+						<td>Szary średni jasny</td>
+						<td><span class="color-preview" style="background-color: #d4d4d8"></span></td>
+					</tr>
+					<tr>
+						<td><code>bg-gray-400</code></td>
+						<td><code>background-color: #a1a1aa</code></td>
+						<td>Szary średni</td>
+						<td><span class="color-preview" style="background-color: #a1a1aa"></span></td>
+					</tr>
+					<tr>
+						<td><code>bg-gray-500</code></td>
+						<td><code>background-color: #71717a</code></td>
+						<td>Szary bazowy</td>
+						<td><span class="color-preview" style="background-color: #71717a"></span></td>
+					</tr>
+					<tr>
+						<td><code>bg-gray-600</code></td>
+						<td><code>background-color: #52525b</code></td>
+						<td>Szary ciemny</td>
+						<td><span class="color-preview" style="background-color: #52525b"></span></td>
+					</tr>
+					<tr>
+						<td><code>bg-gray-700</code></td>
+						<td><code>background-color: #3f3f46</code></td>
+						<td>Szary bardzo ciemny</td>
+						<td><span class="color-preview" style="background-color: #3f3f46"></span></td>
+					</tr>
+					<tr>
+						<td><code>bg-gray-800</code></td>
+						<td><code>background-color: #27272a</code></td>
+						<td>Szary ultra ciemny</td>
+						<td><span class="color-preview" style="background-color: #27272a"></span></td>
+					</tr>
+					<tr>
+						<td><code>bg-gray-900</code></td>
+						<td><code>background-color: #18181b</code></td>
+						<td>Szary najciemniejszy</td>
+						<td><span class="color-preview" style="background-color: #18181b"></span></td>
+					</tr>
+					<tr>
+						<td><code>bg-red-50</code></td>
+						<td><code>background-color: #fef2f2</code></td>
+						<td>Czerwony bardzo jasny</td>
+						<td><span class="color-preview" style="background-color: #fef2f2"></span></td>
+					</tr>
+					<tr>
+						<td><code>bg-red-100</code></td>
+						<td><code>background-color: #fee2e2</code></td>
+						<td>Czerwony jasny</td>
+						<td><span class="color-preview" style="background-color: #fee2e2"></span></td>
+					</tr>
+					<tr>
+						<td><code>bg-red-200</code></td>
+						<td><code>background-color: #fecaca</code></td>
+						<td>Czerwony lekki</td>
+						<td><span class="color-preview" style="background-color: #fecaca"></span></td>
+					</tr>
+					<tr>
+						<td><code>bg-red-300</code></td>
+						<td><code>background-color: #fca5a5</code></td>
+						<td>Czerwony średni jasny</td>
+						<td><span class="color-preview" style="background-color: #fca5a5"></span></td>
+					</tr>
+					<tr>
+						<td><code>bg-red-400</code></td>
+						<td><code>background-color: #f87171</code></td>
+						<td>Czerwony średni</td>
+						<td><span class="color-preview" style="background-color: #f87171"></span></td>
+					</tr>
+					<tr>
+						<td><code>bg-red-500</code></td>
+						<td><code>background-color: #ef4444</code></td>
+						<td>Czerwony bazowy</td>
+						<td><span class="color-preview" style="background-color: #ef4444"></span></td>
+					</tr>
+					<tr>
+						<td><code>bg-red-600</code></td>
+						<td><code>background-color: #dc2626</code></td>
+						<td>Czerwony ciemny</td>
+						<td><span class="color-preview" style="background-color: #dc2626"></span></td>
+					</tr>
+					<tr>
+						<td><code>bg-red-700</code></td>
+						<td><code>background-color: #b91c1c</code></td>
+						<td>Czerwony bardzo ciemny</td>
+						<td><span class="color-preview" style="background-color: #b91c1c"></span></td>
+					</tr>
+					<tr>
+						<td><code>bg-red-800</code></td>
+						<td><code>background-color: #991b1b</code></td>
+						<td>Czerwony ultra ciemny</td>
+						<td><span class="color-preview" style="background-color: #991b1b"></span></td>
+					</tr>
+					<tr>
+						<td><code>bg-red-900</code></td>
+						<td><code>background-color: #7f1d1d</code></td>
+						<td>Czerwony najciemniejszy</td>
+						<td><span class="color-preview" style="background-color: #7f1d1d"></span></td>
+					</tr>
+					<tr>
+						<td><code>bg-transparent</code></td>
+						<td><code>background-color: transparent</code></td>
+						<td>Przezroczyste tło</td>
+						<td><span class="color-preview" style="background-color: transparent"></span></td>
+					</tr>
+					<tr>
+						<td><code>bg-error-lighter</code></td>
+						<td><code>background-color: var(--error-lighter)</code></td>
+						<td>Jaśniejszy błąd</td>
+						<td><span class="color-preview" style="background-color: #fef2f2"></span></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="section" id="pozycjonowanie">
+			<h2>📐 Pozycjonowanie</h2>
+			<table>
+				<thead>
+					<tr>
+						<th>Klasa</th>
+						<th>CSS</th>
+						<th>Opis</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><code>absolute</code></td>
+						<td><code>position: absolute</code></td>
+						<td>Pozycjonowanie absolutne</td>
+					</tr>
+					<tr>
+						<td><code>relative</code></td>
+						<td><code>position: relative</code></td>
+						<td>Pozycjonowanie względne</td>
+					</tr>
+					<tr>
+						<td><code>fixed</code></td>
+						<td><code>position: fixed</code></td>
+						<td>Pozycjonowanie stałe</td>
+					</tr>
+					<tr>
+						<td><code>static</code></td>
+						<td><code>position: static</code></td>
+						<td>Pozycjonowanie statyczne</td>
+					</tr>
+					<tr>
+						<td><code>sticky</code></td>
+						<td><code>position: sticky</code></td>
+						<td>Pozycjonowanie sticky</td>
+					</tr>
+					<tr>
+						<td><code>top-0</code></td>
+						<td><code>top: 0</code></td>
+						<td>Górna pozycja 0</td>
+					</tr>
+					<tr>
+						<td><code>bottom-0</code></td>
+						<td><code>bottom: 0</code></td>
+						<td>Dolna pozycja 0</td>
+					</tr>
+					<tr>
+						<td><code>left-0</code></td>
+						<td><code>left: 0</code></td>
+						<td>Lewa pozycja 0</td>
+					</tr>
+					<tr>
+						<td><code>right-0</code></td>
+						<td><code>right: 0</code></td>
+						<td>Prawa pozycja 0</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="section" id="display">
+			<h2>📦 Display</h2>
+			<table>
+				<thead>
+					<tr>
+						<th>Klasa</th>
+						<th>CSS</th>
+						<th>Opis</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><code>block</code></td>
+						<td><code>display: block</code></td>
+						<td>Element blokowy</td>
+					</tr>
+					<tr>
+						<td><code>inline</code></td>
+						<td><code>display: inline</code></td>
+						<td>Element liniowy</td>
+					</tr>
+					<tr>
+						<td><code>inline-block</code></td>
+						<td><code>display: inline-block</code></td>
+						<td>Element inline-block</td>
+					</tr>
+					<tr>
+						<td><code>flex</code></td>
+						<td><code>display: flex</code></td>
+						<td>Kontener flexbox</td>
+					</tr>
+					<tr>
+						<td><code>inline-flex</code></td>
+						<td><code>display: inline-flex</code></td>
+						<td>Inline flexbox</td>
+					</tr>
+					<tr>
+						<td><code>grid</code></td>
+						<td><code>display: grid</code></td>
+						<td>Kontener grid</td>
+					</tr>
+					<tr>
+						<td><code>inline-grid</code></td>
+						<td><code>display: inline-grid</code></td>
+						<td>Inline grid</td>
+					</tr>
+					<tr>
+						<td><code>hidden</code></td>
+						<td><code>display: none</code></td>
+						<td>Ukryty element</td>
+					</tr>
+					<tr>
+						<td><code>table</code></td>
+						<td><code>display: table</code></td>
+						<td>Tabela</td>
+					</tr>
+					<tr>
+						<td><code>table-cell</code></td>
+						<td><code>display: table-cell</code></td>
+						<td>Komórka tabeli</td>
+					</tr>
+					<tr>
+						<td><code>table-row</code></td>
+						<td><code>display: table-row</code></td>
+						<td>Rząd tabeli</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="section" id="flexbox">
+			<h2>🔧 Flexbox</h2>
+			<table>
+				<thead>
+					<tr>
+						<th>Klasa</th>
+						<th>CSS</th>
+						<th>Opis</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><code>flex-1</code></td>
+						<td><code>flex: 1 1 0%</code></td>
+						<td>Elastyczny element wypełniający przestrzeń</td>
+					</tr>
+					<tr>
+						<td><code>flex-row</code></td>
+						<td><code>flex-direction: row</code></td>
+						<td>Kierunek rzędowy</td>
+					</tr>
+					<tr>
+						<td><code>flex-col</code></td>
+						<td><code>flex-direction: column</code></td>
+						<td>Kierunek kolumnowy</td>
+					</tr>
+					<tr>
+						<td><code>flex-wrap</code></td>
+						<td><code>flex-wrap: wrap</code></td>
+						<td>Z zawijaniem</td>
+					</tr>
+					<tr>
+						<td><code>flex-nowrap</code></td>
+						<td><code>flex-wrap: nowrap</code></td>
+						<td>Bez zawijania</td>
+					</tr>
+					<tr>
+						<td><code>items-center</code></td>
+						<td><code>align-items: center</code></td>
+						<td>Wyśrodkowanie pionowe</td>
+					</tr>
+					<tr>
+						<td><code>items-start</code></td>
+						<td><code>align-items: flex-start</code></td>
+						<td>Wyrównanie do góry</td>
+					</tr>
+					<tr>
+						<td><code>items-end</code></td>
+						<td><code>align-items: flex-end</code></td>
+						<td>Wyrównanie do dołu</td>
+					</tr>
+					<tr>
+						<td><code>justify-center</code></td>
+						<td><code>justify-content: center</code></td>
+						<td>Wyśrodkowanie poziome</td>
+					</tr>
+					<tr>
+						<td><code>justify-between</code></td>
+						<td><code>justify-content: space-between</code></td>
+						<td>Rozłożenie z odstępami</td>
+					</tr>
+					<tr>
+						<td><code>justify-around</code></td>
+						<td><code>justify-content: space-around</code></td>
+						<td>Rozłożenie dookoła</td>
+					</tr>
+					<tr>
+						<td><code>gap-1</code></td>
+						<td><code>gap: 0.25rem</code></td>
+						<td>Odstęp 0.25rem</td>
+					</tr>
+					<tr>
+						<td><code>gap-2</code></td>
+						<td><code>gap: 0.5rem</code></td>
+						<td>Odstęp 0.5rem</td>
+					</tr>
+					<tr>
+						<td><code>gap-4</code></td>
+						<td><code>gap: 1rem</code></td>
+						<td>Odstęp 1rem</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="section" id="spacing">
+			<h2>📏 Spacing</h2>
+
+			<h3>Margin</h3>
+			<table>
+				<thead>
+					<tr>
+						<th>Klasa</th>
+						<th>CSS</th>
+						<th>Opis</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><code>m-0</code></td>
+						<td><code>margin: 0</code></td>
+						<td>Margines 0</td>
+					</tr>
+					<tr>
+						<td><code>m-1</code></td>
+						<td><code>margin: 0.25rem</code></td>
+						<td>Margines 0.25rem</td>
+					</tr>
+					<tr>
+						<td><code>m-2</code></td>
+						<td><code>margin: 0.5rem</code></td>
+						<td>Margines 0.5rem</td>
+					</tr>
+					<tr>
+						<td><code>m-4</code></td>
+						<td><code>margin: 1rem</code></td>
+						<td>Margines 1rem</td>
+					</tr>
+					<tr>
+						<td><code>mt-2</code></td>
+						<td><code>margin-top: 0.5rem</code></td>
+						<td>Margines górny 0.5rem</td>
+					</tr>
+					<tr>
+						<td><code>mb-2</code></td>
+						<td><code>margin-bottom: 0.5rem</code></td>
+						<td>Margines dolny 0.5rem</td>
+					</tr>
+					<tr>
+						<td><code>mx-auto</code></td>
+						<td><code>margin-left: auto; margin-right: auto</code></td>
+						<td>Automatyczne marginesy poziome</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<h3>Padding</h3>
+			<table>
+				<thead>
+					<tr>
+						<th>Klasa</th>
+						<th>CSS</th>
+						<th>Opis</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><code>p-0</code></td>
+						<td><code>padding: 0</code></td>
+						<td>Padding 0</td>
+					</tr>
+					<tr>
+						<td><code>p-1</code></td>
+						<td><code>padding: 0.25rem</code></td>
+						<td>Padding 0.25rem</td>
+					</tr>
+					<tr>
+						<td><code>p-2</code></td>
+						<td><code>padding: 0.5rem</code></td>
+						<td>Padding 0.5rem</td>
+					</tr>
+					<tr>
+						<td><code>p-4</code></td>
+						<td><code>padding: 1rem</code></td>
+						<td>Padding 1rem</td>
+					</tr>
+					<tr>
+						<td><code>px-4</code></td>
+						<td><code>padding-left: 1rem; padding-right: 1rem</code></td>
+						<td>Padding poziomy 1rem</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="section" id="typografia">
+			<h2>🔤 Typografia</h2>
+
+			<h3>Rozmiary tekstu</h3>
+			<table>
+				<thead>
+					<tr>
+						<th>Klasa</th>
+						<th>CSS</th>
+						<th>Opis</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><code>text-xs</code></td>
+						<td><code>font-size: 0.75rem</code></td>
+						<td>Bardzo mały tekst</td>
+					</tr>
+					<tr>
+						<td><code>text-sm</code></td>
+						<td><code>font-size: 0.875rem</code></td>
+						<td>Mały tekst</td>
+					</tr>
+					<tr>
+						<td><code>text-base</code></td>
+						<td><code>font-size: 1rem</code></td>
+						<td>Podstawowy rozmiar</td>
+					</tr>
+					<tr>
+						<td><code>text-lg</code></td>
+						<td><code>font-size: 1.125rem</code></td>
+						<td>Duży tekst</td>
+					</tr>
+					<tr>
+						<td><code>text-xl</code></td>
+						<td><code>font-size: 1.25rem</code></td>
+						<td>Bardzo duży tekst</td>
+					</tr>
+					<tr>
+						<td><code>text-2xl</code></td>
+						<td><code>font-size: 1.5rem</code></td>
+						<td>Tekst 2XL</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<h3>Grubość czcionki</h3>
+			<table>
+				<thead>
+					<tr>
+						<th>Klasa</th>
+						<th>CSS</th>
+						<th>Opis</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><code>font-thin</code></td>
+						<td><code>font-weight: 100</code></td>
+						<td>Bardzo cienka czcionka</td>
+					</tr>
+					<tr>
+						<td><code>font-light</code></td>
+						<td><code>font-weight: 300</code></td>
+						<td>Lekka czcionka</td>
+					</tr>
+					<tr>
+						<td><code>font-normal</code></td>
+						<td><code>font-weight: 400</code></td>
+						<td>Normalna grubość</td>
+					</tr>
+					<tr>
+						<td><code>font-medium</code></td>
+						<td><code>font-weight: 500</code></td>
+						<td>Średnia grubość</td>
+					</tr>
+					<tr>
+						<td><code>font-semibold</code></td>
+						<td><code>font-weight: 600</code></td>
+						<td>Półgruba czcionka</td>
+					</tr>
+					<tr>
+						<td><code>font-bold</code></td>
+						<td><code>font-weight: 700</code></td>
+						<td>Gruba czcionka</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<h3>Wyrównanie tekstu</h3>
+			<table>
+				<thead>
+					<tr>
+						<th>Klasa</th>
+						<th>CSS</th>
+						<th>Opis</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><code>text-left</code></td>
+						<td><code>text-align: left</code></td>
+						<td>Wyrównanie do lewej</td>
+					</tr>
+					<tr>
+						<td><code>text-center</code></td>
+						<td><code>text-align: center</code></td>
+						<td>Wyśrodkowanie tekstu</td>
+					</tr>
+					<tr>
+						<td><code>text-right</code></td>
+						<td><code>text-align: right</code></td>
+						<td>Wyrównanie do prawej</td>
+					</tr>
+					<tr>
+						<td><code>text-justify</code></td>
+						<td><code>text-align: justify</code></td>
+						<td>Justowanie tekstu</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="section" id="custom-gridaly">
+			<h2>🏢 Custom Gridaly</h2>
+			<table>
+				<thead>
+					<tr>
+						<th>Klasa</th>
+						<th>Opis</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><code>gridaly_button</code></td>
+						<td>Niestandardowy styl przycisku Gridaly</td>
+					</tr>
+					<tr>
+						<td><code>gridaly_summaryItem</code></td>
+						<td>Styl elementu podsumowania</td>
+					</tr>
+					<tr>
+						<td><code>gridaly_badges</code></td>
+						<td>Styl odznak</td>
+					</tr>
+					<tr>
+						<td><code>gridaly_loginToProfileButton</code></td>
+						<td>Przycisk logowania do profilu</td>
+					</tr>
+					<tr>
+						<td><code>gridaly_backToHomepageButton</code></td>
+						<td>Przycisk powrotu do strony głównej</td>
+					</tr>
+					<tr>
+						<td><code>gridaly_assignTicket</code></td>
+						<td>Przypisywanie biletu</td>
+					</tr>
+					<tr>
+						<td><code>gridaly_editTicketDetails</code></td>
+						<td>Edycja szczegółów biletu</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<hr />
+
+		<p><em>Dokumentacja wygenerowana automatycznie dla 335 klas CSS w aplikacji Gridaly</em></p>
+	</body>
+</html>
