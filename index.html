@@ -1,85 +1,196 @@
-
+<!DOCTYPE html>
+<html lang="pl">
 	<head>
 		<meta charset="UTF-8" />
 		<title>Dokumentacja klas Tailwind CSS - Gridaly</title>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
 		<style>
+			:root {
+				--atlassian-blue-dark: #0052cc;
+				--atlassian-blue-medium: #0065ff;
+				--atlassian-blue-light: #4c9aff;
+				--atlassian-gray-dark: #42526e;
+				--atlassian-gray-medium: #5e6c84;
+				--atlassian-gray-light: #ebecf0;
+				--atlassian-gray-lighter: #f4f5f7;
+				--atlassian-border: #dfe1e6;
+				--atlassian-shadow: rgba(9, 30, 66, 0.08);
+				--atlassian-shadow-strong: rgba(9, 30, 66, 0.15);
+				--atlassian-text-color: #172b4d;
+				--atlassian-link-color: #0052cc;
+				--atlassian-code-bg: #f4f5f7;
+				--atlassian-note-bg: #e6fcff;
+				--atlassian-note-border: #1489ff;
+				--error-lighter: #fef2f2; /* Existing error color */
+			}
+
 			body {
-				font-family: Arial, sans-serif;
+				font-family: 'Inter', sans-serif;
 				max-width: 1200px;
-				margin: 0 auto;
-				padding: 20px;
+				margin: 24px auto;
+				padding: 0 24px;
+				background-color: #f8f8f8; /* Light background for the page */
+				color: var(--atlassian-text-color);
+				line-height: 1.5;
 			}
-			h1 {
-				color: #0052cc;
-				border-bottom: 3px solid #0052cc;
-				padding-bottom: 10px;
-			}
-			h2 {
-				color: #0066cc;
-				border-bottom: 1px solid #ddd;
-				padding-bottom: 5px;
-			}
+
+			h1,
+			h2,
 			h3 {
-				color: #0066cc;
-				margin-top: 30px;
+				color: var(--atlassian-gray-dark);
+				margin-top: 32px;
+				margin-bottom: 16px;
 			}
+
+			h1 {
+				font-size: 2.25rem; /* 36px */
+				font-weight: 600;
+				border-bottom: 2px solid var(--atlassian-border);
+				padding-bottom: 16px;
+				color: var(--atlassian-blue-dark);
+			}
+
+			h2 {
+				font-size: 1.75rem; /* 28px */
+				font-weight: 600;
+				border-bottom: 1px solid var(--atlassian-border);
+				padding-bottom: 8px;
+			}
+
+			h3 {
+				font-size: 1.25rem; /* 20px */
+				font-weight: 500;
+				color: var(--atlassian-gray-medium);
+			}
+
 			table {
 				border-collapse: collapse;
 				width: 100%;
-				margin: 20px 0;
+				margin: 24px 0;
+				background-color: #ffffff;
+				box-shadow: 0 1px 1px var(--atlassian-shadow);
+				border-radius: 4px;
+				overflow: hidden; /* Ensures rounded corners apply to content */
 			}
+
 			th,
 			td {
-				border: 1px solid #ddd;
-				padding: 8px;
+				border: 1px solid var(--atlassian-border);
+				padding: 12px 16px;
 				text-align: left;
 			}
+
 			th {
-				background-color: #f5f5f5;
-				font-weight: bold;
+				background-color: var(--atlassian-gray-lighter);
+				font-weight: 600;
+				color: var(--atlassian-gray-dark);
+				text-transform: uppercase;
+				font-size: 0.875rem; /* 14px */
 			}
+
+			tr:nth-child(even) {
+				background-color: var(--atlassian-gray-lighter);
+			}
+
+			tr:hover {
+				background-color: #f5f8ff; /* Light blue on hover */
+			}
+
 			code {
-				background-color: #f4f4f4;
-				padding: 2px 4px;
-				border-radius: 3px;
-				font-family: monospace;
+				background-color: var(--atlassian-code-bg);
+				padding: 3px 6px;
+				border-radius: 4px;
+				font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo,
+					Courier, monospace;
+				font-size: 0.9rem;
+				color: var(--atlassian-gray-dark);
 			}
+
 			.color-preview {
 				display: inline-block;
-				width: 20px;
-				height: 20px;
-				border: 1px solid #ccc;
-				margin-right: 5px;
+				width: 24px;
+				height: 24px;
+				border: 1px solid var(--atlassian-border);
+				margin-right: 8px;
 				vertical-align: middle;
+				border-radius: 4px;
+				box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05); /* subtle inner shadow */
 			}
+
 			.toc {
-				background-color: #f9f9f9;
-				padding: 15px;
+				background-color: #ffffff;
+				padding: 20px;
 				border-radius: 5px;
-				margin: 20px 0;
+				margin: 24px 0;
+				box-shadow: 0 1px 1px var(--atlassian-shadow);
+				border: 1px solid var(--atlassian-border);
 			}
+
+			.toc h2 {
+				margin-top: 0;
+				border-bottom: none;
+				padding-bottom: 0;
+				color: var(--atlassian-gray-dark);
+				font-size: 1.5rem; /* 24px */
+			}
+
 			.toc ul {
 				list-style-type: none;
 				padding-left: 0;
 			}
+
 			.toc li {
-				margin: 5px 0;
+				margin: 8px 0;
 			}
+
 			.toc a {
 				text-decoration: none;
-				color: #0052cc;
+				color: var(--atlassian-link-color);
+				transition: color 0.2s ease;
 			}
+
 			.toc a:hover {
+				color: var(--atlassian-blue-medium);
 				text-decoration: underline;
 			}
+
 			.section {
+				background-color: #ffffff;
+				padding: 24px;
+				margin-bottom: 24px;
+				border-radius: 5px;
+				box-shadow: 0 1px 1px var(--atlassian-shadow);
+				border: 1px solid var(--atlassian-border);
+			}
+
+			.note {
+				background-color: var(--atlassian-note-bg);
+				padding: 16px 20px;
+				border-left: 4px solid var(--atlassian-note-border);
+				margin: 24px 0;
+				border-radius: 4px;
+				color: #0747a6; /* Darker blue text for notes */
+			}
+
+			.note strong {
+				color: #0747a6;
+			}
+
+			hr {
+				border: none;
+				border-top: 1px solid var(--atlassian-border);
 				margin: 40px 0;
 			}
-			.note {
-				background-color: #e3f2fd;
-				padding: 10px;
-				border-left: 4px solid #2196f3;
-				margin: 20px 0;
+
+			p {
+				margin-bottom: 16px;
+			}
+
+			p:last-child {
+				margin-bottom: 0;
 			}
 		</style>
 	</head>
