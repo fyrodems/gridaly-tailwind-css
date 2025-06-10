@@ -1,914 +1,1492 @@
 <!DOCTYPE html>
 <html lang="pl">
-	<head>
-		<meta charset="UTF-8" />
-		<title>Dokumentacja klas Tailwind CSS - Gridaly</title>
-		<link
-			href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-			rel="stylesheet"
-		/>
-		<style>
-			:root {
-				--atlassian-blue-dark: #0052cc;
-				--atlassian-blue-medium: #0065ff;
-				--atlassian-blue-light: #4c9aff;
-				--atlassian-gray-dark: #42526e;
-				--atlassian-gray-medium: #5e6c84;
-				--atlassian-gray-light: #ebecf0;
-				--atlassian-gray-lighter: #f4f5f7;
-				--atlassian-border: #dfe1e6;
-				--atlassian-shadow: rgba(9, 30, 66, 0.08);
-				--atlassian-shadow-strong: rgba(9, 30, 66, 0.15);
-				--atlassian-text-color: #172b4d;
-				--atlassian-link-color: #0052cc;
-				--atlassian-code-bg: #f4f5f7;
-				--atlassian-note-bg: #e6fcff;
-				--atlassian-note-border: #1489ff;
-				--error-lighter: #fef2f2; /* Existing error color */
-			}
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dokumentacja klas Tailwind CSS - Gridaly</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
 
-			body {
-				font-family: 'Inter', sans-serif;
-				max-width: 1200px;
-				margin: 24px auto;
-				padding: 0 24px;
-				background-color: #f8f8f8; /* Light background for the page */
-				color: var(--atlassian-text-color);
-				line-height: 1.5;
-			}
+      html {
+        height: 100%;
+      }
 
-			h1,
-			h2,
-			h3 {
-				color: var(--atlassian-gray-dark);
-				margin-top: 32px;
-				margin-bottom: 16px;
-			}
+      :root,
+      html[data-theme="light"],
+      html[data-theme="light"] body {
+        /* Light theme colors */
+        --bg-primary: #ffffff;
+        --bg-secondary: #f7f8f9;
+        --bg-tertiary: #ebecf0;
+        --bg-page: #f7f8f9;
+        --text-primary: #172b4d;
+        --text-secondary: #5e6c84;
+        --text-tertiary: #6b778c;
+        --border-color: #dfe1e6;
+        --border-hover: #c1c7d0;
+        --accent-blue: #0052cc;
+        --accent-blue-light: #4c9aff;
+        --accent-blue-bg: #deebff;
+        --shadow: rgba(9, 30, 66, 0.08);
+        --shadow-strong: rgba(9, 30, 66, 0.15);
+        --code-bg: #f4f5f7;
+        --success-bg: #e3fcef;
+        --success-border: #00875a;
+        --warning-bg: #fffae6;
+        --warning-border: #ffab00;
+        --error-bg: #ffebe6;
+        --error-border: #de350b;
+        --error-lighter: #fef2f2;
+      }
 
-			h1 {
-				font-size: 2.25rem; /* 36px */
-				font-weight: 600;
-				border-bottom: 2px solid var(--atlassian-border);
-				padding-bottom: 16px;
-				color: var(--atlassian-blue-dark);
-			}
+      html[data-theme="dark"],
+      html[data-theme="dark"] body {
+        /* Dark theme colors */
+        --bg-primary: #1d2125 !important;
+        --bg-secondary: #22272b !important;
+        --bg-tertiary: #2c333a !important;
+        --bg-page: #161a1d !important;
+        --text-primary: #b3bac5 !important;
+        --text-secondary: #8590a2 !important;
+        --text-tertiary: #738496 !important;
+        --border-color: #2c333a !important;
+        --border-hover: #454f59 !important;
+        --accent-blue: #579dff !important;
+        --accent-blue-light: #85b8ff !important;
+        --accent-blue-bg: #0d2818 !important;
+        --shadow: rgba(0, 0, 0, 0.2) !important;
+        --shadow-strong: rgba(0, 0, 0, 0.4) !important;
+        --code-bg: #2c333a !important;
+        --success-bg: #1d3324 !important;
+        --success-border: #4bce97 !important;
+        --warning-bg: #332e1b !important;
+        --warning-border: #f5cd47 !important;
+        --error-bg: #3d2721 !important;
+        --error-border: #f87462 !important;
+        --error-lighter: #3d2721 !important;
+      }
 
-			h2 {
-				font-size: 1.75rem; /* 28px */
-				font-weight: 600;
-				border-bottom: 1px solid var(--atlassian-border);
-				padding-bottom: 8px;
-			}
+      @media (prefers-color-scheme: dark) {
+        html:not([data-theme="light"]):not([data-theme="dark"]) {
+          /* Auto dark theme colors when no theme is explicitly set */
+          --bg-primary: #1d2125 !important;
+          --bg-secondary: #22272b !important;
+          --bg-tertiary: #2c333a !important;
+          --bg-page: #161a1d !important;
+          --text-primary: #b3bac5 !important;
+          --text-secondary: #8590a2 !important;
+          --text-tertiary: #738496 !important;
+          --border-color: #2c333a !important;
+          --border-hover: #454f59 !important;
+          --accent-blue: #579dff !important;
+          --accent-blue-light: #85b8ff !important;
+          --accent-blue-bg: #0d2818 !important;
+          --shadow: rgba(0, 0, 0, 0.2) !important;
+          --shadow-strong: rgba(0, 0, 0, 0.4) !important;
+          --code-bg: #2c333a !important;
+          --success-bg: #1d3324 !important;
+          --success-border: #4bce97 !important;
+          --warning-bg: #332e1b !important;
+          --warning-border: #f5cd47 !important;
+          --error-bg: #3d2721 !important;
+          --error-border: #f87462 !important;
+          --error-lighter: #3d2721 !important;
+        }
+      }
 
-			h3 {
-				font-size: 1.25rem; /* 20px */
-				font-weight: 500;
-				color: var(--atlassian-gray-medium);
-			}
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, sans-serif;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 24px;
+        background-color: var(--bg-page);
+        color: var(--text-primary);
+        line-height: 1.6;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        min-height: 100vh;
+      }
 
-			table {
-				border-collapse: collapse;
-				width: 100%;
-				margin: 24px 0;
-				background-color: #ffffff;
-				box-shadow: 0 1px 1px var(--atlassian-shadow);
-				border-radius: 4px;
-				overflow: hidden; /* Ensures rounded corners apply to content */
-			}
+      h1,
+      h2,
+      h3 {
+        color: var(--text-primary);
+        margin-top: 32px;
+        margin-bottom: 16px;
+        font-weight: 600;
+      }
 
-			th,
-			td {
-				border: 1px solid var(--atlassian-border);
-				padding: 12px 16px;
-				text-align: left;
-			}
+      h1 {
+        font-size: 2.25rem; /* 36px */
+        font-weight: 700;
+        border-bottom: 2px solid var(--border-color);
+        padding-bottom: 16px;
+        /* color: var(--accent-blue); */
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
 
-			th {
-				background-color: var(--atlassian-gray-lighter);
-				font-weight: 600;
-				color: var(--atlassian-gray-dark);
-				text-transform: uppercase;
-				font-size: 0.875rem; /* 14px */
-			}
+      h2 {
+        font-size: 1.75rem; /* 28px */
+        font-weight: 600;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 8px;
+        color: var(--text-primary);
+      }
 
-			tr:nth-child(even) {
-				background-color: var(--atlassian-gray-lighter);
-			}
+      h3 {
+        font-size: 1.25rem; /* 20px */
+        font-weight: 500;
+        color: var(--text-secondary);
+      }
 
-			tr:hover {
-				background-color: #f5f8ff; /* Light blue on hover */
-			}
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 24px 0;
+        background-color: var(--bg-primary);
+        box-shadow: 0 1px 3px var(--shadow), 0 1px 2px var(--shadow-strong);
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid var(--border-color);
+      }
 
-			code {
-				background-color: var(--atlassian-code-bg);
-				padding: 3px 6px;
-				border-radius: 4px;
-				font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo,
-					Courier, monospace;
-				font-size: 0.9rem;
-				color: var(--atlassian-gray-dark);
-			}
+      th,
+      td {
+        border: 1px solid var(--border-color);
+        padding: 12px 16px;
+        text-align: left;
+        transition: background-color 0.2s ease;
+      }
 
-			.color-preview {
-				display: inline-block;
-				width: 24px;
-				height: 24px;
-				border: 1px solid var(--atlassian-border);
-				margin-right: 8px;
-				vertical-align: middle;
-				border-radius: 4px;
-				box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05); /* subtle inner shadow */
-			}
+      th {
+        background-color: var(--bg-tertiary);
+        font-weight: 600;
+        color: var(--text-secondary);
+        text-transform: uppercase;
+        font-size: 0.75rem; /* 12px */
+        letter-spacing: 0.5px;
+      }
 
-			.toc {
-				background-color: #ffffff;
-				padding: 20px;
-				border-radius: 5px;
-				margin: 24px 0;
-				box-shadow: 0 1px 1px var(--atlassian-shadow);
-				border: 1px solid var(--atlassian-border);
-			}
+      tbody tr:nth-child(even) {
+        background-color: var(--bg-secondary);
+      }
 
-			.toc h2 {
-				margin-top: 0;
-				border-bottom: none;
-				padding-bottom: 0;
-				color: var(--atlassian-gray-dark);
-				font-size: 1.5rem; /* 24px */
-			}
+      tbody tr:hover {
+        background-color: var(--accent-blue-bg);
+      }
 
-			.toc ul {
-				list-style-type: none;
-				padding-left: 0;
-			}
+      code {
+        background-color: var(--code-bg);
+        padding: 3px 6px;
+        border-radius: 4px;
+        font-family: "SFMono-Regular", "Monaco", "Cascadia Code", "Roboto Mono",
+          Consolas, "Courier New", monospace;
+        font-size: 0.875rem;
+        color: var(--text-primary);
+        border: 1px solid var(--border-color);
+        font-weight: 500;
+      }
 
-			.toc li {
-				margin: 8px 0;
-			}
+      .color-preview {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        border: 1px solid var(--border-color);
+        margin-right: 8px;
+        vertical-align: middle;
+        border-radius: 4px;
+        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+      }
 
-			.toc a {
-				text-decoration: none;
-				color: var(--atlassian-link-color);
-				transition: color 0.2s ease;
-			}
+      .toc {
+        background-color: var(--bg-primary);
+        padding: 24px;
+        border-radius: 8px;
+        margin: 24px 0;
+        box-shadow: 0 1px 3px var(--shadow), 0 1px 2px var(--shadow-strong);
+        border: 1px solid var(--border-color);
+      }
 
-			.toc a:hover {
-				color: var(--atlassian-blue-medium);
-				text-decoration: underline;
-			}
+      .toc h2 {
+        margin-top: 0;
+        border-bottom: none;
+        padding-bottom: 0;
+        color: var(--text-primary);
+        font-size: 1.5rem; /* 24px */
+      }
 
-			.section {
-				background-color: #ffffff;
-				padding: 24px;
-				margin-bottom: 24px;
-				border-radius: 5px;
-				box-shadow: 0 1px 1px var(--atlassian-shadow);
-				border: 1px solid var(--atlassian-border);
-			}
+      .toc ul {
+        list-style-type: none;
+        padding-left: 0;
+        display: flex;
+        flex-direction: column;
+      }
 
-			.note {
-				background-color: var(--atlassian-note-bg);
-				padding: 16px 20px;
-				border-left: 4px solid var(--atlassian-note-border);
-				margin: 24px 0;
-				border-radius: 4px;
-				color: #0747a6; /* Darker blue text for notes */
-			}
+      .toc a {
+        text-decoration: none;
+        color: var(--accent-blue);
+        transition: all 0.2s ease;
+        padding: 8px 12px;
+        border-radius: 6px;
+        display: block;
+        font-weight: 500;
+      }
 
-			.note strong {
-				color: #0747a6;
-			}
+      .toc a:hover {
+        color: var(--accent-blue-light);
+        background-color: var(--accent-blue-bg);
+        text-decoration: none;
+      }
 
-			hr {
-				border: none;
-				border-top: 1px solid var(--atlassian-border);
-				margin: 40px 0;
-			}
+      .section {
+        background-color: var(--bg-primary);
+        padding: 24px;
+        margin-bottom: 24px;
+        border-radius: 8px;
+        box-shadow: 0 1px 3px var(--shadow), 0 1px 2px var(--shadow-strong);
+        border: 1px solid var(--border-color);
+      }
 
-			p {
-				margin-bottom: 16px;
-			}
+      .note {
+        background-color: var(--accent-blue-bg);
+        padding: 16px 20px;
+        border-left: 4px solid var(--accent-blue);
+        margin: 24px 0;
+        border-radius: 6px;
+        color: var(--text-primary);
+        border: 1px solid var(--border-color);
+        border-left: 4px solid var(--accent-blue);
+      }
 
-			p:last-child {
-				margin-bottom: 0;
-			}
-		</style>
-	</head>
-	<body>
-		<h1>📋 Dokumentacja klas Tailwind CSS</h1>
+      .note strong {
+        color: var(--accent-blue);
+      }
 
-		<div class="note">
-			<strong>Lista 335 klas Tailwind CSS używanych w aplikacji Gridaly</strong>
-		</div>
+      hr {
+        border: none;
+        border-top: 1px solid var(--border-color);
+        margin: 40px 0;
+      }
 
-		<div class="toc">
-			<h2>📊 Spis treści</h2>
-			<ul>
-				<li><a href="#kolory-tla">🎨 Kolory tła</a></li>
-				<li><a href="#kolory-tekstu">🎨 Kolory tekstu</a></li>
-				<li><a href="#pozycjonowanie">📐 Pozycjonowanie</a></li>
-				<li><a href="#display">📦 Display</a></li>
-				<li><a href="#flexbox">🔧 Flexbox</a></li>
-				<li><a href="#spacing">📏 Spacing</a></li>
-				<li><a href="#typografia">🔤 Typografia</a></li>
-				<li><a href="#border">🖼️ Border & Radius</a></li>
-				<li><a href="#utilities">🎛️ Utilities</a></li>
-				<li><a href="#custom-gridaly">🏢 Custom Gridaly</a></li>
-			</ul>
-		</div>
+      p {
+        margin-bottom: 16px;
+        color: var(--text-primary);
+      }
 
-		<div class="section" id="kolory-tla">
-			<h2>🎨 Kolory tła</h2>
-			<table>
-				<thead>
-					<tr>
-						<th>Klasa</th>
-						<th>CSS</th>
-						<th>Opis</th>
-						<th>Podgląd</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td><code>bg-black</code></td>
-						<td><code>background-color: #000000</code></td>
-						<td>Czarne tło</td>
-						<td><span class="color-preview" style="background-color: #000000"></span></td>
-					</tr>
-					<tr>
-						<td><code>bg-white</code></td>
-						<td><code>background-color: #ffffff</code></td>
-						<td>Białe tło</td>
-						<td><span class="color-preview" style="background-color: #ffffff"></span></td>
-					</tr>
-					<tr>
-						<td><code>bg-blue-50</code></td>
-						<td><code>background-color: #eff6ff</code></td>
-						<td>Niebieski bardzo jasny</td>
-						<td><span class="color-preview" style="background-color: #eff6ff"></span></td>
-					</tr>
-					<tr>
-						<td><code>bg-blue-100</code></td>
-						<td><code>background-color: #dbeafe</code></td>
-						<td>Niebieski jasny</td>
-						<td><span class="color-preview" style="background-color: #dbeafe"></span></td>
-					</tr>
-					<tr>
-						<td><code>bg-blue-200</code></td>
-						<td><code>background-color: #bfdbfe</code></td>
-						<td>Niebieski lekki</td>
-						<td><span class="color-preview" style="background-color: #bfdbfe"></span></td>
-					</tr>
-					<tr>
-						<td><code>bg-blue-300</code></td>
-						<td><code>background-color: #93c5fd</code></td>
-						<td>Niebieski średni jasny</td>
-						<td><span class="color-preview" style="background-color: #93c5fd"></span></td>
-					</tr>
-					<tr>
-						<td><code>bg-blue-400</code></td>
-						<td><code>background-color: #60a5fa</code></td>
-						<td>Niebieski średni</td>
-						<td><span class="color-preview" style="background-color: #60a5fa"></span></td>
-					</tr>
-					<tr>
-						<td><code>bg-blue-500</code></td>
-						<td><code>background-color: #3b82f6</code></td>
-						<td>Niebieski bazowy</td>
-						<td><span class="color-preview" style="background-color: #3b82f6"></span></td>
-					</tr>
-					<tr>
-						<td><code>bg-blue-600</code></td>
-						<td><code>background-color: #2563eb</code></td>
-						<td>Niebieski ciemny</td>
-						<td><span class="color-preview" style="background-color: #2563eb"></span></td>
-					</tr>
-					<tr>
-						<td><code>bg-blue-700</code></td>
-						<td><code>background-color: #1d4ed8</code></td>
-						<td>Niebieski bardzo ciemny</td>
-						<td><span class="color-preview" style="background-color: #1d4ed8"></span></td>
-					</tr>
-					<tr>
-						<td><code>bg-blue-800</code></td>
-						<td><code>background-color: #1e40af</code></td>
-						<td>Niebieski ultra ciemny</td>
-						<td><span class="color-preview" style="background-color: #1e40af"></span></td>
-					</tr>
-					<tr>
-						<td><code>bg-blue-900</code></td>
-						<td><code>background-color: #1e3a8a</code></td>
-						<td>Niebieski najciemniejszy</td>
-						<td><span class="color-preview" style="background-color: #1e3a8a"></span></td>
-					</tr>
-					<tr>
-						<td><code>bg-gray-50</code></td>
-						<td><code>background-color: #fafafa</code></td>
-						<td>Szary bardzo jasny</td>
-						<td><span class="color-preview" style="background-color: #fafafa"></span></td>
-					</tr>
-					<tr>
-						<td><code>bg-gray-100</code></td>
-						<td><code>background-color: #f4f4f5</code></td>
-						<td>Szary jasny</td>
-						<td><span class="color-preview" style="background-color: #f4f4f5"></span></td>
-					</tr>
-					<tr>
-						<td><code>bg-gray-200</code></td>
-						<td><code>background-color: #e4e4e7</code></td>
-						<td>Szary lekki</td>
-						<td><span class="color-preview" style="background-color: #e4e4e7"></span></td>
-					</tr>
-					<tr>
-						<td><code>bg-gray-300</code></td>
-						<td><code>background-color: #d4d4d8</code></td>
-						<td>Szary średni jasny</td>
-						<td><span class="color-preview" style="background-color: #d4d4d8"></span></td>
-					</tr>
-					<tr>
-						<td><code>bg-gray-400</code></td>
-						<td><code>background-color: #a1a1aa</code></td>
-						<td>Szary średni</td>
-						<td><span class="color-preview" style="background-color: #a1a1aa"></span></td>
-					</tr>
-					<tr>
-						<td><code>bg-gray-500</code></td>
-						<td><code>background-color: #71717a</code></td>
-						<td>Szary bazowy</td>
-						<td><span class="color-preview" style="background-color: #71717a"></span></td>
-					</tr>
-					<tr>
-						<td><code>bg-gray-600</code></td>
-						<td><code>background-color: #52525b</code></td>
-						<td>Szary ciemny</td>
-						<td><span class="color-preview" style="background-color: #52525b"></span></td>
-					</tr>
-					<tr>
-						<td><code>bg-gray-700</code></td>
-						<td><code>background-color: #3f3f46</code></td>
-						<td>Szary bardzo ciemny</td>
-						<td><span class="color-preview" style="background-color: #3f3f46"></span></td>
-					</tr>
-					<tr>
-						<td><code>bg-gray-800</code></td>
-						<td><code>background-color: #27272a</code></td>
-						<td>Szary ultra ciemny</td>
-						<td><span class="color-preview" style="background-color: #27272a"></span></td>
-					</tr>
-					<tr>
-						<td><code>bg-gray-900</code></td>
-						<td><code>background-color: #18181b</code></td>
-						<td>Szary najciemniejszy</td>
-						<td><span class="color-preview" style="background-color: #18181b"></span></td>
-					</tr>
-					<tr>
-						<td><code>bg-red-50</code></td>
-						<td><code>background-color: #fef2f2</code></td>
-						<td>Czerwony bardzo jasny</td>
-						<td><span class="color-preview" style="background-color: #fef2f2"></span></td>
-					</tr>
-					<tr>
-						<td><code>bg-red-100</code></td>
-						<td><code>background-color: #fee2e2</code></td>
-						<td>Czerwony jasny</td>
-						<td><span class="color-preview" style="background-color: #fee2e2"></span></td>
-					</tr>
-					<tr>
-						<td><code>bg-red-200</code></td>
-						<td><code>background-color: #fecaca</code></td>
-						<td>Czerwony lekki</td>
-						<td><span class="color-preview" style="background-color: #fecaca"></span></td>
-					</tr>
-					<tr>
-						<td><code>bg-red-300</code></td>
-						<td><code>background-color: #fca5a5</code></td>
-						<td>Czerwony średni jasny</td>
-						<td><span class="color-preview" style="background-color: #fca5a5"></span></td>
-					</tr>
-					<tr>
-						<td><code>bg-red-400</code></td>
-						<td><code>background-color: #f87171</code></td>
-						<td>Czerwony średni</td>
-						<td><span class="color-preview" style="background-color: #f87171"></span></td>
-					</tr>
-					<tr>
-						<td><code>bg-red-500</code></td>
-						<td><code>background-color: #ef4444</code></td>
-						<td>Czerwony bazowy</td>
-						<td><span class="color-preview" style="background-color: #ef4444"></span></td>
-					</tr>
-					<tr>
-						<td><code>bg-red-600</code></td>
-						<td><code>background-color: #dc2626</code></td>
-						<td>Czerwony ciemny</td>
-						<td><span class="color-preview" style="background-color: #dc2626"></span></td>
-					</tr>
-					<tr>
-						<td><code>bg-red-700</code></td>
-						<td><code>background-color: #b91c1c</code></td>
-						<td>Czerwony bardzo ciemny</td>
-						<td><span class="color-preview" style="background-color: #b91c1c"></span></td>
-					</tr>
-					<tr>
-						<td><code>bg-red-800</code></td>
-						<td><code>background-color: #991b1b</code></td>
-						<td>Czerwony ultra ciemny</td>
-						<td><span class="color-preview" style="background-color: #991b1b"></span></td>
-					</tr>
-					<tr>
-						<td><code>bg-red-900</code></td>
-						<td><code>background-color: #7f1d1d</code></td>
-						<td>Czerwony najciemniejszy</td>
-						<td><span class="color-preview" style="background-color: #7f1d1d"></span></td>
-					</tr>
-					<tr>
-						<td><code>bg-transparent</code></td>
-						<td><code>background-color: transparent</code></td>
-						<td>Przezroczyste tło</td>
-						<td><span class="color-preview" style="background-color: transparent"></span></td>
-					</tr>
-					<tr>
-						<td><code>bg-error-lighter</code></td>
-						<td><code>background-color: var(--error-lighter)</code></td>
-						<td>Jaśniejszy błąd</td>
-						<td><span class="color-preview" style="background-color: #fef2f2"></span></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+      p:last-child {
+        margin-bottom: 0;
+      }
 
-		<div class="section" id="pozycjonowanie">
-			<h2>📐 Pozycjonowanie</h2>
-			<table>
-				<thead>
-					<tr>
-						<th>Klasa</th>
-						<th>CSS</th>
-						<th>Opis</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td><code>absolute</code></td>
-						<td><code>position: absolute</code></td>
-						<td>Pozycjonowanie absolutne</td>
-					</tr>
-					<tr>
-						<td><code>relative</code></td>
-						<td><code>position: relative</code></td>
-						<td>Pozycjonowanie względne</td>
-					</tr>
-					<tr>
-						<td><code>fixed</code></td>
-						<td><code>position: fixed</code></td>
-						<td>Pozycjonowanie stałe</td>
-					</tr>
-					<tr>
-						<td><code>static</code></td>
-						<td><code>position: static</code></td>
-						<td>Pozycjonowanie statyczne</td>
-					</tr>
-					<tr>
-						<td><code>sticky</code></td>
-						<td><code>position: sticky</code></td>
-						<td>Pozycjonowanie sticky</td>
-					</tr>
-					<tr>
-						<td><code>top-0</code></td>
-						<td><code>top: 0</code></td>
-						<td>Górna pozycja 0</td>
-					</tr>
-					<tr>
-						<td><code>bottom-0</code></td>
-						<td><code>bottom: 0</code></td>
-						<td>Dolna pozycja 0</td>
-					</tr>
-					<tr>
-						<td><code>left-0</code></td>
-						<td><code>left: 0</code></td>
-						<td>Lewa pozycja 0</td>
-					</tr>
-					<tr>
-						<td><code>right-0</code></td>
-						<td><code>right: 0</code></td>
-						<td>Prawa pozycja 0</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+      /* Theme toggle button */
+      .theme-toggle {
+        background-color: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 8px 12px;
+        color: var(--text-primary);
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 0.875rem;
+        font-weight: 500;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
 
-		<div class="section" id="display">
-			<h2>📦 Display</h2>
-			<table>
-				<thead>
-					<tr>
-						<th>Klasa</th>
-						<th>CSS</th>
-						<th>Opis</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td><code>block</code></td>
-						<td><code>display: block</code></td>
-						<td>Element blokowy</td>
-					</tr>
-					<tr>
-						<td><code>inline</code></td>
-						<td><code>display: inline</code></td>
-						<td>Element liniowy</td>
-					</tr>
-					<tr>
-						<td><code>inline-block</code></td>
-						<td><code>display: inline-block</code></td>
-						<td>Element inline-block</td>
-					</tr>
-					<tr>
-						<td><code>flex</code></td>
-						<td><code>display: flex</code></td>
-						<td>Kontener flexbox</td>
-					</tr>
-					<tr>
-						<td><code>inline-flex</code></td>
-						<td><code>display: inline-flex</code></td>
-						<td>Inline flexbox</td>
-					</tr>
-					<tr>
-						<td><code>grid</code></td>
-						<td><code>display: grid</code></td>
-						<td>Kontener grid</td>
-					</tr>
-					<tr>
-						<td><code>inline-grid</code></td>
-						<td><code>display: inline-grid</code></td>
-						<td>Inline grid</td>
-					</tr>
-					<tr>
-						<td><code>hidden</code></td>
-						<td><code>display: none</code></td>
-						<td>Ukryty element</td>
-					</tr>
-					<tr>
-						<td><code>table</code></td>
-						<td><code>display: table</code></td>
-						<td>Tabela</td>
-					</tr>
-					<tr>
-						<td><code>table-cell</code></td>
-						<td><code>display: table-cell</code></td>
-						<td>Komórka tabeli</td>
-					</tr>
-					<tr>
-						<td><code>table-row</code></td>
-						<td><code>display: table-row</code></td>
-						<td>Rząd tabeli</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+      .theme-toggle:hover {
+        background-color: var(--bg-tertiary);
+        border-color: var(--border-hover);
+      }
 
-		<div class="section" id="flexbox">
-			<h2>🔧 Flexbox</h2>
-			<table>
-				<thead>
-					<tr>
-						<th>Klasa</th>
-						<th>CSS</th>
-						<th>Opis</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td><code>flex-1</code></td>
-						<td><code>flex: 1 1 0%</code></td>
-						<td>Elastyczny element wypełniający przestrzeń</td>
-					</tr>
-					<tr>
-						<td><code>flex-row</code></td>
-						<td><code>flex-direction: row</code></td>
-						<td>Kierunek rzędowy</td>
-					</tr>
-					<tr>
-						<td><code>flex-col</code></td>
-						<td><code>flex-direction: column</code></td>
-						<td>Kierunek kolumnowy</td>
-					</tr>
-					<tr>
-						<td><code>flex-wrap</code></td>
-						<td><code>flex-wrap: wrap</code></td>
-						<td>Z zawijaniem</td>
-					</tr>
-					<tr>
-						<td><code>flex-nowrap</code></td>
-						<td><code>flex-wrap: nowrap</code></td>
-						<td>Bez zawijania</td>
-					</tr>
-					<tr>
-						<td><code>items-center</code></td>
-						<td><code>align-items: center</code></td>
-						<td>Wyśrodkowanie pionowe</td>
-					</tr>
-					<tr>
-						<td><code>items-start</code></td>
-						<td><code>align-items: flex-start</code></td>
-						<td>Wyrównanie do góry</td>
-					</tr>
-					<tr>
-						<td><code>items-end</code></td>
-						<td><code>align-items: flex-end</code></td>
-						<td>Wyrównanie do dołu</td>
-					</tr>
-					<tr>
-						<td><code>justify-center</code></td>
-						<td><code>justify-content: center</code></td>
-						<td>Wyśrodkowanie poziome</td>
-					</tr>
-					<tr>
-						<td><code>justify-between</code></td>
-						<td><code>justify-content: space-between</code></td>
-						<td>Rozłożenie z odstępami</td>
-					</tr>
-					<tr>
-						<td><code>justify-around</code></td>
-						<td><code>justify-content: space-around</code></td>
-						<td>Rozłożenie dookoła</td>
-					</tr>
-					<tr>
-						<td><code>gap-1</code></td>
-						<td><code>gap: 0.25rem</code></td>
-						<td>Odstęp 0.25rem</td>
-					</tr>
-					<tr>
-						<td><code>gap-2</code></td>
-						<td><code>gap: 0.5rem</code></td>
-						<td>Odstęp 0.5rem</td>
-					</tr>
-					<tr>
-						<td><code>gap-4</code></td>
-						<td><code>gap: 1rem</code></td>
-						<td>Odstęp 1rem</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+      .theme-toggle:focus {
+        outline: 2px solid var(--accent-blue);
+        outline-offset: 2px;
+      }
 
-		<div class="section" id="spacing">
-			<h2>📏 Spacing</h2>
+      /* Smooth transitions */
+      html {
+        transition: background-color 0.3s ease;
+      }
 
-			<h3>Margin</h3>
-			<table>
-				<thead>
-					<tr>
-						<th>Klasa</th>
-						<th>CSS</th>
-						<th>Opis</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td><code>m-0</code></td>
-						<td><code>margin: 0</code></td>
-						<td>Margines 0</td>
-					</tr>
-					<tr>
-						<td><code>m-1</code></td>
-						<td><code>margin: 0.25rem</code></td>
-						<td>Margines 0.25rem</td>
-					</tr>
-					<tr>
-						<td><code>m-2</code></td>
-						<td><code>margin: 0.5rem</code></td>
-						<td>Margines 0.5rem</td>
-					</tr>
-					<tr>
-						<td><code>m-4</code></td>
-						<td><code>margin: 1rem</code></td>
-						<td>Margines 1rem</td>
-					</tr>
-					<tr>
-						<td><code>mt-2</code></td>
-						<td><code>margin-top: 0.5rem</code></td>
-						<td>Margines górny 0.5rem</td>
-					</tr>
-					<tr>
-						<td><code>mb-2</code></td>
-						<td><code>margin-bottom: 0.5rem</code></td>
-						<td>Margines dolny 0.5rem</td>
-					</tr>
-					<tr>
-						<td><code>mx-auto</code></td>
-						<td><code>margin-left: auto; margin-right: auto</code></td>
-						<td>Automatyczne marginesy poziome</td>
-					</tr>
-				</tbody>
-			</table>
+      body,
+      .section,
+      .toc,
+      table,
+      th,
+      td,
+      .theme-toggle {
+        transition: background-color 0.3s ease, border-color 0.3s ease,
+          color 0.3s ease;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>
+      📋 Dokumentacja klas Tailwind CSS
+      <button
+        class="theme-toggle"
+        onclick="toggleTheme()"
+        aria-label="Przełącz motyw"
+      >
+        <span id="theme-icon">🌙</span>
+        <span id="theme-text">Ciemny motyw</span>
+      </button>
+    </h1>
 
-			<h3>Padding</h3>
-			<table>
-				<thead>
-					<tr>
-						<th>Klasa</th>
-						<th>CSS</th>
-						<th>Opis</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td><code>p-0</code></td>
-						<td><code>padding: 0</code></td>
-						<td>Padding 0</td>
-					</tr>
-					<tr>
-						<td><code>p-1</code></td>
-						<td><code>padding: 0.25rem</code></td>
-						<td>Padding 0.25rem</td>
-					</tr>
-					<tr>
-						<td><code>p-2</code></td>
-						<td><code>padding: 0.5rem</code></td>
-						<td>Padding 0.5rem</td>
-					</tr>
-					<tr>
-						<td><code>p-4</code></td>
-						<td><code>padding: 1rem</code></td>
-						<td>Padding 1rem</td>
-					</tr>
-					<tr>
-						<td><code>px-4</code></td>
-						<td><code>padding-left: 1rem; padding-right: 1rem</code></td>
-						<td>Padding poziomy 1rem</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+    <div class="toc">
+      <h2>📊 Spis treści</h2>
+      <ul>
+        <li><a href="#kolory-tla">🎨 Kolory tła</a></li>
+        <li><a href="#kolory-tekstu">🎨 Kolory tekstu</a></li>
+        <li><a href="#pozycjonowanie">📐 Pozycjonowanie</a></li>
+        <li><a href="#display">📦 Display</a></li>
+        <li><a href="#flexbox">🔧 Flexbox</a></li>
+        <li><a href="#spacing">📏 Spacing</a></li>
+        <li><a href="#typografia">🔤 Typografia</a></li>
+        <li><a href="#border">🖼️ Border & Radius</a></li>
+        <li><a href="#utilities">🎛️ Utilities</a></li>
+      </ul>
+    </div>
 
-		<div class="section" id="typografia">
-			<h2>🔤 Typografia</h2>
+    <div class="section" id="kolory-tla">
+      <h2>🎨 Kolory tła</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Klasa</th>
+            <th>CSS</th>
+            <th>Opis</th>
+            <th>Podgląd</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>bg-black</code></td>
+            <td><code>background-color: #000000</code></td>
+            <td>Czarne tło</td>
+            <td>
+              <span
+                class="color-preview"
+                style="background-color: #000000"
+              ></span>
+            </td>
+          </tr>
+          <tr>
+            <td><code>bg-white</code></td>
+            <td><code>background-color: #ffffff</code></td>
+            <td>Białe tło</td>
+            <td>
+              <span
+                class="color-preview"
+                style="background-color: #ffffff"
+              ></span>
+            </td>
+          </tr>
+          <tr>
+            <td><code>bg-blue-50</code></td>
+            <td><code>background-color: #eff6ff</code></td>
+            <td>Niebieski bardzo jasny</td>
+            <td>
+              <span
+                class="color-preview"
+                style="background-color: #eff6ff"
+              ></span>
+            </td>
+          </tr>
+          <tr>
+            <td><code>bg-blue-100</code></td>
+            <td><code>background-color: #dbeafe</code></td>
+            <td>Niebieski jasny</td>
+            <td>
+              <span
+                class="color-preview"
+                style="background-color: #dbeafe"
+              ></span>
+            </td>
+          </tr>
+          <tr>
+            <td><code>bg-blue-200</code></td>
+            <td><code>background-color: #bfdbfe</code></td>
+            <td>Niebieski lekki</td>
+            <td>
+              <span
+                class="color-preview"
+                style="background-color: #bfdbfe"
+              ></span>
+            </td>
+          </tr>
+          <tr>
+            <td><code>bg-blue-300</code></td>
+            <td><code>background-color: #93c5fd</code></td>
+            <td>Niebieski średni jasny</td>
+            <td>
+              <span
+                class="color-preview"
+                style="background-color: #93c5fd"
+              ></span>
+            </td>
+          </tr>
+          <tr>
+            <td><code>bg-blue-400</code></td>
+            <td><code>background-color: #60a5fa</code></td>
+            <td>Niebieski średni</td>
+            <td>
+              <span
+                class="color-preview"
+                style="background-color: #60a5fa"
+              ></span>
+            </td>
+          </tr>
+          <tr>
+            <td><code>bg-blue-500</code></td>
+            <td><code>background-color: #3b82f6</code></td>
+            <td>Niebieski bazowy</td>
+            <td>
+              <span
+                class="color-preview"
+                style="background-color: #3b82f6"
+              ></span>
+            </td>
+          </tr>
+          <tr>
+            <td><code>bg-blue-600</code></td>
+            <td><code>background-color: #2563eb</code></td>
+            <td>Niebieski ciemny</td>
+            <td>
+              <span
+                class="color-preview"
+                style="background-color: #2563eb"
+              ></span>
+            </td>
+          </tr>
+          <tr>
+            <td><code>bg-blue-700</code></td>
+            <td><code>background-color: #1d4ed8</code></td>
+            <td>Niebieski bardzo ciemny</td>
+            <td>
+              <span
+                class="color-preview"
+                style="background-color: #1d4ed8"
+              ></span>
+            </td>
+          </tr>
+          <tr>
+            <td><code>bg-blue-800</code></td>
+            <td><code>background-color: #1e40af</code></td>
+            <td>Niebieski ultra ciemny</td>
+            <td>
+              <span
+                class="color-preview"
+                style="background-color: #1e40af"
+              ></span>
+            </td>
+          </tr>
+          <tr>
+            <td><code>bg-blue-900</code></td>
+            <td><code>background-color: #1e3a8a</code></td>
+            <td>Niebieski najciemniejszy</td>
+            <td>
+              <span
+                class="color-preview"
+                style="background-color: #1e3a8a"
+              ></span>
+            </td>
+          </tr>
+          <tr>
+            <td><code>bg-gray-50</code></td>
+            <td><code>background-color: #fafafa</code></td>
+            <td>Szary bardzo jasny</td>
+            <td>
+              <span
+                class="color-preview"
+                style="background-color: #fafafa"
+              ></span>
+            </td>
+          </tr>
+          <tr>
+            <td><code>bg-gray-100</code></td>
+            <td><code>background-color: #f4f4f5</code></td>
+            <td>Szary jasny</td>
+            <td>
+              <span
+                class="color-preview"
+                style="background-color: #f4f4f5"
+              ></span>
+            </td>
+          </tr>
+          <tr>
+            <td><code>bg-gray-200</code></td>
+            <td><code>background-color: #e4e4e7</code></td>
+            <td>Szary lekki</td>
+            <td>
+              <span
+                class="color-preview"
+                style="background-color: #e4e4e7"
+              ></span>
+            </td>
+          </tr>
+          <tr>
+            <td><code>bg-gray-300</code></td>
+            <td><code>background-color: #d4d4d8</code></td>
+            <td>Szary średni jasny</td>
+            <td>
+              <span
+                class="color-preview"
+                style="background-color: #d4d4d8"
+              ></span>
+            </td>
+          </tr>
+          <tr>
+            <td><code>bg-gray-400</code></td>
+            <td><code>background-color: #a1a1aa</code></td>
+            <td>Szary średni</td>
+            <td>
+              <span
+                class="color-preview"
+                style="background-color: #a1a1aa"
+              ></span>
+            </td>
+          </tr>
+          <tr>
+            <td><code>bg-gray-500</code></td>
+            <td><code>background-color: #71717a</code></td>
+            <td>Szary bazowy</td>
+            <td>
+              <span
+                class="color-preview"
+                style="background-color: #71717a"
+              ></span>
+            </td>
+          </tr>
+          <tr>
+            <td><code>bg-gray-600</code></td>
+            <td><code>background-color: #52525b</code></td>
+            <td>Szary ciemny</td>
+            <td>
+              <span
+                class="color-preview"
+                style="background-color: #52525b"
+              ></span>
+            </td>
+          </tr>
+          <tr>
+            <td><code>bg-gray-700</code></td>
+            <td><code>background-color: #3f3f46</code></td>
+            <td>Szary bardzo ciemny</td>
+            <td>
+              <span
+                class="color-preview"
+                style="background-color: #3f3f46"
+              ></span>
+            </td>
+          </tr>
+          <tr>
+            <td><code>bg-gray-800</code></td>
+            <td><code>background-color: #27272a</code></td>
+            <td>Szary ultra ciemny</td>
+            <td>
+              <span
+                class="color-preview"
+                style="background-color: #27272a"
+              ></span>
+            </td>
+          </tr>
+          <tr>
+            <td><code>bg-gray-900</code></td>
+            <td><code>background-color: #18181b</code></td>
+            <td>Szary najciemniejszy</td>
+            <td>
+              <span
+                class="color-preview"
+                style="background-color: #18181b"
+              ></span>
+            </td>
+          </tr>
+          <tr>
+            <td><code>bg-red-50</code></td>
+            <td><code>background-color: #fef2f2</code></td>
+            <td>Czerwony bardzo jasny</td>
+            <td>
+              <span
+                class="color-preview"
+                style="background-color: #fef2f2"
+              ></span>
+            </td>
+          </tr>
+          <tr>
+            <td><code>bg-red-100</code></td>
+            <td><code>background-color: #fee2e2</code></td>
+            <td>Czerwony jasny</td>
+            <td>
+              <span
+                class="color-preview"
+                style="background-color: #fee2e2"
+              ></span>
+            </td>
+          </tr>
+          <tr>
+            <td><code>bg-red-200</code></td>
+            <td><code>background-color: #fecaca</code></td>
+            <td>Czerwony lekki</td>
+            <td>
+              <span
+                class="color-preview"
+                style="background-color: #fecaca"
+              ></span>
+            </td>
+          </tr>
+          <tr>
+            <td><code>bg-red-300</code></td>
+            <td><code>background-color: #fca5a5</code></td>
+            <td>Czerwony średni jasny</td>
+            <td>
+              <span
+                class="color-preview"
+                style="background-color: #fca5a5"
+              ></span>
+            </td>
+          </tr>
+          <tr>
+            <td><code>bg-red-400</code></td>
+            <td><code>background-color: #f87171</code></td>
+            <td>Czerwony średni</td>
+            <td>
+              <span
+                class="color-preview"
+                style="background-color: #f87171"
+              ></span>
+            </td>
+          </tr>
+          <tr>
+            <td><code>bg-red-500</code></td>
+            <td><code>background-color: #ef4444</code></td>
+            <td>Czerwony bazowy</td>
+            <td>
+              <span
+                class="color-preview"
+                style="background-color: #ef4444"
+              ></span>
+            </td>
+          </tr>
+          <tr>
+            <td><code>bg-red-600</code></td>
+            <td><code>background-color: #dc2626</code></td>
+            <td>Czerwony ciemny</td>
+            <td>
+              <span
+                class="color-preview"
+                style="background-color: #dc2626"
+              ></span>
+            </td>
+          </tr>
+          <tr>
+            <td><code>bg-red-700</code></td>
+            <td><code>background-color: #b91c1c</code></td>
+            <td>Czerwony bardzo ciemny</td>
+            <td>
+              <span
+                class="color-preview"
+                style="background-color: #b91c1c"
+              ></span>
+            </td>
+          </tr>
+          <tr>
+            <td><code>bg-red-800</code></td>
+            <td><code>background-color: #991b1b</code></td>
+            <td>Czerwony ultra ciemny</td>
+            <td>
+              <span
+                class="color-preview"
+                style="background-color: #991b1b"
+              ></span>
+            </td>
+          </tr>
+          <tr>
+            <td><code>bg-red-900</code></td>
+            <td><code>background-color: #7f1d1d</code></td>
+            <td>Czerwony najciemniejszy</td>
+            <td>
+              <span
+                class="color-preview"
+                style="background-color: #7f1d1d"
+              ></span>
+            </td>
+          </tr>
+          <tr>
+            <td><code>bg-transparent</code></td>
+            <td><code>background-color: transparent</code></td>
+            <td>Przezroczyste tło</td>
+            <td>
+              <span
+                class="color-preview"
+                style="background-color: transparent"
+              ></span>
+            </td>
+          </tr>
+          <tr>
+            <td><code>bg-error-lighter</code></td>
+            <td><code>background-color: var(--error-lighter)</code></td>
+            <td>Jaśniejszy błąd</td>
+            <td>
+              <span
+                class="color-preview"
+                style="background-color: #fef2f2"
+              ></span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-			<h3>Rozmiary tekstu</h3>
-			<table>
-				<thead>
-					<tr>
-						<th>Klasa</th>
-						<th>CSS</th>
-						<th>Opis</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td><code>text-xs</code></td>
-						<td><code>font-size: 0.75rem</code></td>
-						<td>Bardzo mały tekst</td>
-					</tr>
-					<tr>
-						<td><code>text-sm</code></td>
-						<td><code>font-size: 0.875rem</code></td>
-						<td>Mały tekst</td>
-					</tr>
-					<tr>
-						<td><code>text-base</code></td>
-						<td><code>font-size: 1rem</code></td>
-						<td>Podstawowy rozmiar</td>
-					</tr>
-					<tr>
-						<td><code>text-lg</code></td>
-						<td><code>font-size: 1.125rem</code></td>
-						<td>Duży tekst</td>
-					</tr>
-					<tr>
-						<td><code>text-xl</code></td>
-						<td><code>font-size: 1.25rem</code></td>
-						<td>Bardzo duży tekst</td>
-					</tr>
-					<tr>
-						<td><code>text-2xl</code></td>
-						<td><code>font-size: 1.5rem</code></td>
-						<td>Tekst 2XL</td>
-					</tr>
-				</tbody>
-			</table>
+    <div class="section" id="kolory-tekstu">
+      <h2>🎨 Kolory tekstu</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Klasa</th>
+            <th>CSS</th>
+            <th>Opis</th>
+            <th>Podgląd</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>text-black</code></td>
+            <td><code>color: #000000</code></td>
+            <td>Czarny tekst</td>
+            <td><span style="color: #000000">Przykład tekstu</span></td>
+          </tr>
+          <tr>
+            <td><code>text-white</code></td>
+            <td><code>color: #ffffff</code></td>
+            <td>Biały tekst</td>
+            <td>
+              <span
+                style="
+                  color: #ffffff;
+                  background-color: #333;
+                  padding: 2px 6px;
+                  border-radius: 4px;
+                "
+                >Przykład tekstu</span
+              >
+            </td>
+          </tr>
+          <tr>
+            <td><code>text-blue-500</code></td>
+            <td><code>color: #3b82f6</code></td>
+            <td>Niebieski tekst</td>
+            <td><span style="color: #3b82f6">Przykład tekstu</span></td>
+          </tr>
+          <tr>
+            <td><code>text-blue-600</code></td>
+            <td><code>color: #2563eb</code></td>
+            <td>Niebieski ciemny tekst</td>
+            <td><span style="color: #2563eb">Przykład tekstu</span></td>
+          </tr>
+          <tr>
+            <td><code>text-red-500</code></td>
+            <td><code>color: #ef4444</code></td>
+            <td>Czerwony tekst</td>
+            <td><span style="color: #ef4444">Przykład tekstu</span></td>
+          </tr>
+          <tr>
+            <td><code>text-green-500</code></td>
+            <td><code>color: #22c55e</code></td>
+            <td>Zielony tekst</td>
+            <td><span style="color: #22c55e">Przykład tekstu</span></td>
+          </tr>
+          <tr>
+            <td><code>text-gray-500</code></td>
+            <td><code>color: #6b7280</code></td>
+            <td>Szary tekst</td>
+            <td><span style="color: #6b7280">Przykład tekstu</span></td>
+          </tr>
+          <tr>
+            <td><code>text-yellow-500</code></td>
+            <td><code>color: #eab308</code></td>
+            <td>Żółty tekst</td>
+            <td><span style="color: #eab308">Przykład tekstu</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-			<h3>Grubość czcionki</h3>
-			<table>
-				<thead>
-					<tr>
-						<th>Klasa</th>
-						<th>CSS</th>
-						<th>Opis</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td><code>font-thin</code></td>
-						<td><code>font-weight: 100</code></td>
-						<td>Bardzo cienka czcionka</td>
-					</tr>
-					<tr>
-						<td><code>font-light</code></td>
-						<td><code>font-weight: 300</code></td>
-						<td>Lekka czcionka</td>
-					</tr>
-					<tr>
-						<td><code>font-normal</code></td>
-						<td><code>font-weight: 400</code></td>
-						<td>Normalna grubość</td>
-					</tr>
-					<tr>
-						<td><code>font-medium</code></td>
-						<td><code>font-weight: 500</code></td>
-						<td>Średnia grubość</td>
-					</tr>
-					<tr>
-						<td><code>font-semibold</code></td>
-						<td><code>font-weight: 600</code></td>
-						<td>Półgruba czcionka</td>
-					</tr>
-					<tr>
-						<td><code>font-bold</code></td>
-						<td><code>font-weight: 700</code></td>
-						<td>Gruba czcionka</td>
-					</tr>
-				</tbody>
-			</table>
+    <div class="section" id="pozycjonowanie">
+      <h2>📐 Pozycjonowanie</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Klasa</th>
+            <th>CSS</th>
+            <th>Opis</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>absolute</code></td>
+            <td><code>position: absolute</code></td>
+            <td>Pozycjonowanie absolutne</td>
+          </tr>
+          <tr>
+            <td><code>relative</code></td>
+            <td><code>position: relative</code></td>
+            <td>Pozycjonowanie względne</td>
+          </tr>
+          <tr>
+            <td><code>fixed</code></td>
+            <td><code>position: fixed</code></td>
+            <td>Pozycjonowanie stałe</td>
+          </tr>
+          <tr>
+            <td><code>static</code></td>
+            <td><code>position: static</code></td>
+            <td>Pozycjonowanie statyczne</td>
+          </tr>
+          <tr>
+            <td><code>sticky</code></td>
+            <td><code>position: sticky</code></td>
+            <td>Pozycjonowanie sticky</td>
+          </tr>
+          <tr>
+            <td><code>top-0</code></td>
+            <td><code>top: 0</code></td>
+            <td>Górna pozycja 0</td>
+          </tr>
+          <tr>
+            <td><code>bottom-0</code></td>
+            <td><code>bottom: 0</code></td>
+            <td>Dolna pozycja 0</td>
+          </tr>
+          <tr>
+            <td><code>left-0</code></td>
+            <td><code>left: 0</code></td>
+            <td>Lewa pozycja 0</td>
+          </tr>
+          <tr>
+            <td><code>right-0</code></td>
+            <td><code>right: 0</code></td>
+            <td>Prawa pozycja 0</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-			<h3>Wyrównanie tekstu</h3>
-			<table>
-				<thead>
-					<tr>
-						<th>Klasa</th>
-						<th>CSS</th>
-						<th>Opis</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td><code>text-left</code></td>
-						<td><code>text-align: left</code></td>
-						<td>Wyrównanie do lewej</td>
-					</tr>
-					<tr>
-						<td><code>text-center</code></td>
-						<td><code>text-align: center</code></td>
-						<td>Wyśrodkowanie tekstu</td>
-					</tr>
-					<tr>
-						<td><code>text-right</code></td>
-						<td><code>text-align: right</code></td>
-						<td>Wyrównanie do prawej</td>
-					</tr>
-					<tr>
-						<td><code>text-justify</code></td>
-						<td><code>text-align: justify</code></td>
-						<td>Justowanie tekstu</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+    <div class="section" id="display">
+      <h2>📦 Display</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Klasa</th>
+            <th>CSS</th>
+            <th>Opis</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>block</code></td>
+            <td><code>display: block</code></td>
+            <td>Element blokowy</td>
+          </tr>
+          <tr>
+            <td><code>inline</code></td>
+            <td><code>display: inline</code></td>
+            <td>Element liniowy</td>
+          </tr>
+          <tr>
+            <td><code>inline-block</code></td>
+            <td><code>display: inline-block</code></td>
+            <td>Element inline-block</td>
+          </tr>
+          <tr>
+            <td><code>flex</code></td>
+            <td><code>display: flex</code></td>
+            <td>Kontener flexbox</td>
+          </tr>
+          <tr>
+            <td><code>inline-flex</code></td>
+            <td><code>display: inline-flex</code></td>
+            <td>Inline flexbox</td>
+          </tr>
+          <tr>
+            <td><code>grid</code></td>
+            <td><code>display: grid</code></td>
+            <td>Kontener grid</td>
+          </tr>
+          <tr>
+            <td><code>inline-grid</code></td>
+            <td><code>display: inline-grid</code></td>
+            <td>Inline grid</td>
+          </tr>
+          <tr>
+            <td><code>hidden</code></td>
+            <td><code>display: none</code></td>
+            <td>Ukryty element</td>
+          </tr>
+          <tr>
+            <td><code>table</code></td>
+            <td><code>display: table</code></td>
+            <td>Tabela</td>
+          </tr>
+          <tr>
+            <td><code>table-cell</code></td>
+            <td><code>display: table-cell</code></td>
+            <td>Komórka tabeli</td>
+          </tr>
+          <tr>
+            <td><code>table-row</code></td>
+            <td><code>display: table-row</code></td>
+            <td>Rząd tabeli</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-		<div class="section" id="custom-gridaly">
-			<h2>🏢 Custom Gridaly</h2>
-			<table>
-				<thead>
-					<tr>
-						<th>Klasa</th>
-						<th>Opis</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td><code>gridaly_button</code></td>
-						<td>Niestandardowy styl przycisku Gridaly</td>
-					</tr>
-					<tr>
-						<td><code>gridaly_summaryItem</code></td>
-						<td>Styl elementu podsumowania</td>
-					</tr>
-					<tr>
-						<td><code>gridaly_badges</code></td>
-						<td>Styl odznak</td>
-					</tr>
-					<tr>
-						<td><code>gridaly_loginToProfileButton</code></td>
-						<td>Przycisk logowania do profilu</td>
-					</tr>
-					<tr>
-						<td><code>gridaly_backToHomepageButton</code></td>
-						<td>Przycisk powrotu do strony głównej</td>
-					</tr>
-					<tr>
-						<td><code>gridaly_assignTicket</code></td>
-						<td>Przypisywanie biletu</td>
-					</tr>
-					<tr>
-						<td><code>gridaly_editTicketDetails</code></td>
-						<td>Edycja szczegółów biletu</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+    <div class="section" id="flexbox">
+      <h2>🔧 Flexbox</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Klasa</th>
+            <th>CSS</th>
+            <th>Opis</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>flex-1</code></td>
+            <td><code>flex: 1 1 0%</code></td>
+            <td>Elastyczny element wypełniający przestrzeń</td>
+          </tr>
+          <tr>
+            <td><code>flex-row</code></td>
+            <td><code>flex-direction: row</code></td>
+            <td>Kierunek rzędowy</td>
+          </tr>
+          <tr>
+            <td><code>flex-col</code></td>
+            <td><code>flex-direction: column</code></td>
+            <td>Kierunek kolumnowy</td>
+          </tr>
+          <tr>
+            <td><code>flex-wrap</code></td>
+            <td><code>flex-wrap: wrap</code></td>
+            <td>Z zawijaniem</td>
+          </tr>
+          <tr>
+            <td><code>flex-nowrap</code></td>
+            <td><code>flex-wrap: nowrap</code></td>
+            <td>Bez zawijania</td>
+          </tr>
+          <tr>
+            <td><code>items-center</code></td>
+            <td><code>align-items: center</code></td>
+            <td>Wyśrodkowanie pionowe</td>
+          </tr>
+          <tr>
+            <td><code>items-start</code></td>
+            <td><code>align-items: flex-start</code></td>
+            <td>Wyrównanie do góry</td>
+          </tr>
+          <tr>
+            <td><code>items-end</code></td>
+            <td><code>align-items: flex-end</code></td>
+            <td>Wyrównanie do dołu</td>
+          </tr>
+          <tr>
+            <td><code>justify-center</code></td>
+            <td><code>justify-content: center</code></td>
+            <td>Wyśrodkowanie poziome</td>
+          </tr>
+          <tr>
+            <td><code>justify-between</code></td>
+            <td><code>justify-content: space-between</code></td>
+            <td>Rozłożenie z odstępami</td>
+          </tr>
+          <tr>
+            <td><code>justify-around</code></td>
+            <td><code>justify-content: space-around</code></td>
+            <td>Rozłożenie dookoła</td>
+          </tr>
+          <tr>
+            <td><code>gap-1</code></td>
+            <td><code>gap: 0.25rem</code></td>
+            <td>Odstęp 0.25rem</td>
+          </tr>
+          <tr>
+            <td><code>gap-2</code></td>
+            <td><code>gap: 0.5rem</code></td>
+            <td>Odstęp 0.5rem</td>
+          </tr>
+          <tr>
+            <td><code>gap-4</code></td>
+            <td><code>gap: 1rem</code></td>
+            <td>Odstęp 1rem</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-		<hr />
+    <div class="section" id="spacing">
+      <h2>📏 Spacing</h2>
 
-		<p><em>Dokumentacja wygenerowana automatycznie dla 335 klas CSS w aplikacji Gridaly</em></p>
-	</body>
+      <h3>Margin</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Klasa</th>
+            <th>CSS</th>
+            <th>Opis</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>m-0</code></td>
+            <td><code>margin: 0</code></td>
+            <td>Margines 0</td>
+          </tr>
+          <tr>
+            <td><code>m-1</code></td>
+            <td><code>margin: 0.25rem</code></td>
+            <td>Margines 0.25rem</td>
+          </tr>
+          <tr>
+            <td><code>m-2</code></td>
+            <td><code>margin: 0.5rem</code></td>
+            <td>Margines 0.5rem</td>
+          </tr>
+          <tr>
+            <td><code>m-4</code></td>
+            <td><code>margin: 1rem</code></td>
+            <td>Margines 1rem</td>
+          </tr>
+          <tr>
+            <td><code>mt-2</code></td>
+            <td><code>margin-top: 0.5rem</code></td>
+            <td>Margines górny 0.5rem</td>
+          </tr>
+          <tr>
+            <td><code>mb-2</code></td>
+            <td><code>margin-bottom: 0.5rem</code></td>
+            <td>Margines dolny 0.5rem</td>
+          </tr>
+          <tr>
+            <td><code>mx-auto</code></td>
+            <td><code>margin-left: auto; margin-right: auto</code></td>
+            <td>Automatyczne marginesy poziome</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Padding</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Klasa</th>
+            <th>CSS</th>
+            <th>Opis</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>p-0</code></td>
+            <td><code>padding: 0</code></td>
+            <td>Padding 0</td>
+          </tr>
+          <tr>
+            <td><code>p-1</code></td>
+            <td><code>padding: 0.25rem</code></td>
+            <td>Padding 0.25rem</td>
+          </tr>
+          <tr>
+            <td><code>p-2</code></td>
+            <td><code>padding: 0.5rem</code></td>
+            <td>Padding 0.5rem</td>
+          </tr>
+          <tr>
+            <td><code>p-4</code></td>
+            <td><code>padding: 1rem</code></td>
+            <td>Padding 1rem</td>
+          </tr>
+          <tr>
+            <td><code>px-4</code></td>
+            <td><code>padding-left: 1rem; padding-right: 1rem</code></td>
+            <td>Padding poziomy 1rem</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section" id="typografia">
+      <h2>🔤 Typografia</h2>
+
+      <h3>Rozmiary tekstu</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Klasa</th>
+            <th>CSS</th>
+            <th>Opis</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>text-xs</code></td>
+            <td><code>font-size: 0.75rem</code></td>
+            <td>Bardzo mały tekst</td>
+          </tr>
+          <tr>
+            <td><code>text-sm</code></td>
+            <td><code>font-size: 0.875rem</code></td>
+            <td>Mały tekst</td>
+          </tr>
+          <tr>
+            <td><code>text-base</code></td>
+            <td><code>font-size: 1rem</code></td>
+            <td>Podstawowy rozmiar</td>
+          </tr>
+          <tr>
+            <td><code>text-lg</code></td>
+            <td><code>font-size: 1.125rem</code></td>
+            <td>Duży tekst</td>
+          </tr>
+          <tr>
+            <td><code>text-xl</code></td>
+            <td><code>font-size: 1.25rem</code></td>
+            <td>Bardzo duży tekst</td>
+          </tr>
+          <tr>
+            <td><code>text-2xl</code></td>
+            <td><code>font-size: 1.5rem</code></td>
+            <td>Tekst 2XL</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Grubość czcionki</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Klasa</th>
+            <th>CSS</th>
+            <th>Opis</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>font-thin</code></td>
+            <td><code>font-weight: 100</code></td>
+            <td>Bardzo cienka czcionka</td>
+          </tr>
+          <tr>
+            <td><code>font-light</code></td>
+            <td><code>font-weight: 300</code></td>
+            <td>Lekka czcionka</td>
+          </tr>
+          <tr>
+            <td><code>font-normal</code></td>
+            <td><code>font-weight: 400</code></td>
+            <td>Normalna grubość</td>
+          </tr>
+          <tr>
+            <td><code>font-medium</code></td>
+            <td><code>font-weight: 500</code></td>
+            <td>Średnia grubość</td>
+          </tr>
+          <tr>
+            <td><code>font-semibold</code></td>
+            <td><code>font-weight: 600</code></td>
+            <td>Półgruba czcionka</td>
+          </tr>
+          <tr>
+            <td><code>font-bold</code></td>
+            <td><code>font-weight: 700</code></td>
+            <td>Gruba czcionka</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Wyrównanie tekstu</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Klasa</th>
+            <th>CSS</th>
+            <th>Opis</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>text-left</code></td>
+            <td><code>text-align: left</code></td>
+            <td>Wyrównanie do lewej</td>
+          </tr>
+          <tr>
+            <td><code>text-center</code></td>
+            <td><code>text-align: center</code></td>
+            <td>Wyśrodkowanie tekstu</td>
+          </tr>
+          <tr>
+            <td><code>text-right</code></td>
+            <td><code>text-align: right</code></td>
+            <td>Wyrównanie do prawej</td>
+          </tr>
+          <tr>
+            <td><code>text-justify</code></td>
+            <td><code>text-align: justify</code></td>
+            <td>Justowanie tekstu</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section" id="border">
+      <h2>🖼️ Border & Radius</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Klasa</th>
+            <th>CSS</th>
+            <th>Opis</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>border</code></td>
+            <td><code>border-width: 1px</code></td>
+            <td>Ramka 1px</td>
+          </tr>
+          <tr>
+            <td><code>border-0</code></td>
+            <td><code>border-width: 0px</code></td>
+            <td>Brak ramki</td>
+          </tr>
+          <tr>
+            <td><code>border-2</code></td>
+            <td><code>border-width: 2px</code></td>
+            <td>Ramka 2px</td>
+          </tr>
+          <tr>
+            <td><code>border-gray-300</code></td>
+            <td><code>border-color: #d1d5db</code></td>
+            <td>Szara ramka</td>
+          </tr>
+          <tr>
+            <td><code>rounded</code></td>
+            <td><code>border-radius: 0.25rem</code></td>
+            <td>Zaokrąglone rogi</td>
+          </tr>
+          <tr>
+            <td><code>rounded-md</code></td>
+            <td><code>border-radius: 0.375rem</code></td>
+            <td>Średnio zaokrąglone</td>
+          </tr>
+          <tr>
+            <td><code>rounded-lg</code></td>
+            <td><code>border-radius: 0.5rem</code></td>
+            <td>Mocno zaokrąglone</td>
+          </tr>
+          <tr>
+            <td><code>rounded-full</code></td>
+            <td><code>border-radius: 9999px</code></td>
+            <td>Pełne zaokrąglenie</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section" id="utilities">
+      <h2>🎛️ Utilities</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Klasa</th>
+            <th>CSS</th>
+            <th>Opis</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>w-full</code></td>
+            <td><code>width: 100%</code></td>
+            <td>Pełna szerokość</td>
+          </tr>
+          <tr>
+            <td><code>h-full</code></td>
+            <td><code>height: 100%</code></td>
+            <td>Pełna wysokość</td>
+          </tr>
+          <tr>
+            <td><code>min-h-screen</code></td>
+            <td><code>min-height: 100vh</code></td>
+            <td>Minimalna wysokość ekranu</td>
+          </tr>
+          <tr>
+            <td><code>opacity-50</code></td>
+            <td><code>opacity: 0.5</code></td>
+            <td>50% przezroczystość</td>
+          </tr>
+          <tr>
+            <td><code>shadow</code></td>
+            <td><code>box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1)</code></td>
+            <td>Cień</td>
+          </tr>
+          <tr>
+            <td><code>shadow-lg</code></td>
+            <td><code>box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1)</code></td>
+            <td>Duży cień</td>
+          </tr>
+          <tr>
+            <td><code>cursor-pointer</code></td>
+            <td><code>cursor: pointer</code></td>
+            <td>Kursor wskazujący</td>
+          </tr>
+          <tr>
+            <td><code>select-none</code></td>
+            <td><code>user-select: none</code></td>
+            <td>Nie można zaznaczyć</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr />
+
+    <p>
+      <em
+        >Dokumentacja wygenerowana automatycznie dla 335+ klas CSS w aplikacji
+        Gridaly</em
+      >
+    </p>
+
+    <script>
+      // Theme management
+      function getStoredTheme() {
+        return localStorage.getItem("theme");
+      }
+
+      function setStoredTheme(theme) {
+        localStorage.setItem("theme", theme);
+      }
+
+      function getPreferredTheme() {
+        const storedTheme = getStoredTheme();
+        if (storedTheme) {
+          return storedTheme;
+        }
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+      }
+
+      function setTheme(theme) {
+        console.log("Setting theme to:", theme);
+
+        const root = document.documentElement;
+
+        if (theme === "dark") {
+          root.setAttribute("data-theme", "dark");
+        } else if (theme === "auto") {
+          if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            root.setAttribute("data-theme", "dark");
+          } else {
+            root.setAttribute("data-theme", "light");
+          }
+        } else {
+          // light theme
+          root.setAttribute("data-theme", "light");
+        }
+
+        console.log("Current data-theme:", root.getAttribute("data-theme"));
+
+        // Debug CSS variables
+        const computedStyle = getComputedStyle(document.body);
+        const bgPrimary = computedStyle.getPropertyValue("--bg-primary").trim();
+        const textPrimary = computedStyle
+          .getPropertyValue("--text-primary")
+          .trim();
+        console.log(
+          "CSS Variables - bg-primary:",
+          bgPrimary,
+          "text-primary:",
+          textPrimary
+        );
+
+        updateThemeUI(theme);
+      }
+
+      function updateThemeUI(theme) {
+        const themeIcon = document.getElementById("theme-icon");
+        const themeText = document.getElementById("theme-text");
+
+        if (!themeIcon || !themeText) {
+          console.error("Theme UI elements not found");
+          return;
+        }
+
+        const isDark =
+          theme === "dark" ||
+          (theme === "auto" &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches);
+
+        if (isDark) {
+          themeIcon.textContent = "☀️";
+          themeText.textContent = "Jasny motyw";
+        } else {
+          themeIcon.textContent = "🌙";
+          themeText.textContent = "Ciemny motyw";
+        }
+
+        console.log("UI updated for theme:", theme, "isDark:", isDark);
+      }
+
+      function toggleTheme() {
+        const currentTheme = getStoredTheme() || "light";
+        let newTheme;
+
+        console.log("Current theme:", currentTheme);
+
+        if (currentTheme === "light") {
+          newTheme = "dark";
+        } else if (currentTheme === "dark") {
+          newTheme = "light";
+        } else {
+          newTheme = "light";
+        }
+
+        console.log("New theme:", newTheme);
+
+        setStoredTheme(newTheme);
+        setTheme(newTheme);
+      }
+
+      // Initialize theme when DOM is ready
+      document.addEventListener("DOMContentLoaded", function () {
+        const preferredTheme = getPreferredTheme();
+        console.log("Initializing with theme:", preferredTheme);
+        setTheme(preferredTheme);
+      });
+
+      // Listen for system theme changes
+      window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .addEventListener("change", (e) => {
+          console.log("System theme changed:", e.matches ? "dark" : "light");
+          const storedTheme = getStoredTheme();
+          if (!storedTheme || storedTheme === "auto") {
+            setTheme("auto");
+          }
+        });
+    </script>
+  </body>
 </html>
